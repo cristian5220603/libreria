@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2 class="text-center mb-4">Mis préstamos</h2>
+<table class="table table-striped text-center">
+  <thead>
+    <tr>
+      <th>Libro</th>
+      <th>Fecha de préstamo</th>
+      <th>Devuelto</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in prestamos %}
+      <tr>
+        <td>{{ p.book.title }}</td>
+        <td>{{ p.fecha_prestamo }}</td>
+        <td>{{ p.devuelto|yesno:"Sí,No" }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="3">No tienes préstamos activos.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

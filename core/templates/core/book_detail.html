@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="card">
+  <div class="row g-0">
+    <div class="col-md-4">
+      {% if book.image %}
+        <img src="{{ book.image.url }}" class="img-fluid rounded-start" alt="{{ book.title }}">
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title">{{ book.title }}</h3>
+        <p><strong>Autor:</strong> {{ book.author }}</p>
+        <p><strong>Categoría:</strong> {{ book.category.name }}</p>
+        <p>{{ book.description }}</p>
+        {% if book.available %}
+          <a href="{% url 'rentar_libro' book.pk %}" class="btn btn-success">Rentar libro</a>
+        {% else %}
+          <button class="btn btn-secondary" disabled>No disponible</button>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

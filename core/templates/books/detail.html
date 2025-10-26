@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ book.title }}</h1>
+<p>{{ book.description }}</p>
+
+<button id="request-loan">Solicitar préstamo</button>
+
+<script>
+const BOOK_ID = {{ book.id }};
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+document.getElementById('request-loan').addEventListener('click', async () => {
+  const res = await fetch('/api/loans/', {
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json',
+      'X-CSRFToken': getCookie('csrftoken'),
+    },
+    body: JSON.stringify({ book_id: BOOK_ID })
+  });
+  const data = await res.json();
+  alert(JSON.stringify(data));
+});
+</script>
+{% endblock %}

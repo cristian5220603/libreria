@@ -1,0 +1,35 @@
+
+# 📘 COMANDOS PARA ACTIVAR Y EJECUTAR EL PROYECTO DJANGO DE BIBLIOTECA
+
+# 1️⃣ Entrar al proyecto
+cd C:\Users\lopez\biblioteca_project
+
+# 2️⃣ Activar el entorno virtual
+venv\Scripts\activate
+
+# 3️⃣ Instalar dependencias necesarias
+pip install django djangorestframework pillow
+
+# 4️⃣ Crear migraciones
+python manage.py makemigrations
+
+# (Si pide valores por defecto, escribe:)
+#  -> 1
+#  -> "Desconocido" o 1 según el caso
+
+# 5️⃣ Aplicar migraciones
+python manage.py migrate
+
+# 6️⃣ Crear superusuario para acceder al panel admin
+python manage.py createsuperuser
+
+# 7️⃣ Ejecutar el servidor
+python manage.py runserver
+
+# 8️⃣ Acceder al sitio web:
+# Sitio principal: http://127.0.0.1:8000
+# Panel admin:     http://127.0.0.1:8000/admin
+
+# 9️⃣ (Opcional) Crear carpetas si Django lo solicita
+mkdir static
+mkdir templates
